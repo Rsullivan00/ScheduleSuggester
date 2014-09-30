@@ -1,0 +1,10 @@
+.v-center-parent {
+    display: table;
+    table-layout: fixed;
+}
+
+.v-center-child {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

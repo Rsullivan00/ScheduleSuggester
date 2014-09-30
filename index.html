@@ -9,6 +9,9 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
+    <!-- Custom styles -->
+    <link href="css/schedule.css" rel="stylesheet">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,10 +23,49 @@
     <div class="container container-fluid">
       <div class="row-fluid">
         <div class="col-md-6">
-          <h1>Schedule suggester</h1>
+	    <div class="page-header">
+	      <h1>SCU Freshmen Schedule Generator<br />
+              <small>Need help figuring out your first-year COEN or Web Design schedule? We've got you covered.</small>
+              </h1>
         </div>
-        <div class="col-md-6">
-          Right column content
+        </div>
+        <div class="col-md-6 v-center-parent">
+          <div class="v-center-child">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Fall quarter</th>
+                  <th>Winter quarter</th>
+                  <th>Spring quarter</th>
+                </tr>
+              <tr id="row0">
+                <td>Class 1a</td>
+                <td>Class 2a</td>
+                <td>Class 3a</td>
+                <td class="hidden">ENGR 1</td>
+              </tr>
+              <tr id="row1">
+                <td>Class 1b</td>
+                <td>Class 2b</td>
+                <td>Class 3a</td>
+              </tr>
+              <tr id="row2">
+                <td>Class 1a</td>
+                <td>Class 2a</td>
+                <td>Class 3a</td>
+              </tr>
+              <tr id="row3">
+                <td>Class 1a</td>
+                <td>Class 2a</td>
+                <td>Class 3a</td>
+              </tr>
+              <tr id="row4">
+                <td>ENGR 1</td>
+                <td class="hidden">ENGR 1</td>
+                <td class="hidden"></td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
