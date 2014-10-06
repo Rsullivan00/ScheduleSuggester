@@ -1,1 +1,7 @@
+.table > tbody > tr > td {
+    border: 1px solid #DDD;
+}
 
+.table > tbody > tr > td.borderless {
+    border: none;
+}
