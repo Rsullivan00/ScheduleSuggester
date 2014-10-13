@@ -28,89 +28,129 @@
             <small>Need help figuring out your first-year COEN or Web Design schedule? We've got you covered.</small>
             </h1>
         </div>
-            <div class="panel panel-info">
+        <div class="panel-group" id="accordion">
+           <div class="panel panel-primary">
               <div class="panel-heading">
-                <h3 class="panel-title">Pre-enrolled classes</h3>
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <div>
+                  AP credit
+                    </div>
+                </a>
+                </h3>
               </div>
-              <div class="panel-body">
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-7">
+                      Calculus AB
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Calculus BC 
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Computer Science 
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Chemistry 
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-7">
+                      Physics 
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Physics 
+                    </div>
+                    <div class="col-md-5">
+                      <select class="form-control">
+                        <option value="null">Didn't take test</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+               </div>
               </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-danger">
               <div class="panel-heading">
-                <h3 class="panel-title">AP credit</h3>
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <div>
+                  Coding experience
+                    </div>
+                  </a>
+                </h3>
               </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    Calculus AB
-                  </div>
-                  <div class="col-md-8">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="score">
-                    <span class="input-group-addon">
-                      Didn't take it
-                      <input type="checkbox" checked>
-                    </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    Calculus BC
-                  </div>
-                  <div class="col-md-8">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="score">
-                    <span class="input-group-addon">
-                      Didn't take it
-                      <input type="checkbox" checked>
-                    </span>
-                    </div>
-                  </div>
+              <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  If you have prior experience to programming, you can skip COEN 10: Introduction to Programming. This class will give you exposure to basic programming in C. Click the checkbox if you are comfortable with concepts such as conditionals, loops, functions, and arrays.
+                  <br />
+                  <b>Check if you want to skip COEN 10: </b><input type="checkbox" id="progExperience">
                 </div>
               </div>
-            </div>
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <h3 class="panel-title">IB credit</h3>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-md-4">
-                    Physics
-                  </div>
-                  <div class="col-md-8">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="score">
-                    <span class="input-group-addon">
-                      Didn't take it
-                      <input type="checkbox" checked>
-                    </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                    Computer Science
-                  </div>
-                  <div class="col-md-8">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="score">
-                    <span class="input-group-addon">
-                      Didn't take it
-                      <input type="checkbox" checked>
-                    </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          <div class="panel panel-danger">
-            <div class="panel-heading">
-              <h3 class="panel-title">Coding experience</h3>
-            </div>
-            <div class="panel-body">
             </div>
           </div>
         </div>
