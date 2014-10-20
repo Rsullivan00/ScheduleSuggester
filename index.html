@@ -8,6 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Toggle switch styles -->
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
 
     <!-- Custom styles -->
     <link href="css/schedule.css" rel="stylesheet">
@@ -208,7 +210,11 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div id="schedule-column" class="center-block">
+          <div class="page-header text-right">
+            <b>Choose your major:</b>
+            <input type="checkbox" data-off-text="COEN" data-on-text="Web" name="major-switch"></input>
+          </div>
+          <div>
             <h3 class="text-center">Your suggested schedule</h3>
             <table class="table table-borderless" id="schedule-table">
               <thead>
@@ -261,5 +267,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/schedule-suggester.js"></script>
   </body>
 </html>
