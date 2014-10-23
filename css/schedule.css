@@ -5,3 +5,23 @@
 .table > tbody > tr > td.borderless {
     border: none;
 }
+
+
+/*
+ * Styles for printing
+ */
+@media print {
+    body > div > div.row-fluid > div:nth-child(1) {
+        display: none;
+    }
+
+    body > div > div > div:nth-child(2) > div.page-header.text-right {
+        display: none;
+    }
+
+    button.btn {
+        display: none;
+    }
+    #schedule-table {
+    }
+}
