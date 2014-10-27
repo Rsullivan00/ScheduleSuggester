@@ -159,24 +159,20 @@ var SELECTS = {
     calcAB: function(score) { 
 	if (score > 3) {
 	    credits.math11 = true;
-	    credits.math12 = true;
 	} else {
 	    credits.math11 = false;
-	    credits.math12 = false;
 	}
     },
     calcBC: function(score) { 
+	/* TODO: Fix bug with calcAB and BC undoing */
 	if (score == 3) {
 	    credits.math11 = true; 
-	    credits.math12 = false; 
 	} else if (score > 3) {
 	    credits.math11 = true; 
 	    credits.math12 = true; 
-	    credits.math13 = true; 
 	} else {
 	    credits.math11 = false;
 	    credits.math12 = false;
-	    credits.math13 = false;
 	}
     },
     csci:   function(score) { 
