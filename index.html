@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Schedule Suggester</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Toggle switch styles -->
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/schedule.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container container-fluid">
+      <div class="row-fluid">
+        <div class="col-md-6">
+          <div class="page-header">
+            <h1>SCU Freshmen Schedule Generator<br />
+            <small>Need help figuring out your first-year COEN or Web Design schedule? We've got you covered.</small>
+            </h1>
+        </div>
+        <div class="panel-group" id="accordion">
+           <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <div>
+                  AP credit
+                    </div>
+                </a>
+                </h3>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    <h5>
+                    Choose your score for each of the following AP tests. If you did not take a test, select the "N/A" option.
+                    </h5>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Calculus AB
+                    </div>
+                    <div class="col-md-5">
+                      <select id="calcAB" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Calculus BC 
+                    </div>
+                    <div class="col-md-5">
+                      <select id="calcBC" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Computer Science A
+                    </div>
+                    <div class="col-md-5">
+                      <select id="csci" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                      Chemistry 
+                    </div>
+                    <div class="col-md-5">
+                      <select id="chem" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-7">
+                      Physics C: Mechanics
+                    </div>
+                    <div class="col-md-5">
+                      <select id="physM" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-7">
+                      Physics C: Electricity & Magnetism
+                    </div>
+                    <div class="col-md-5">
+                      <select id="physEM" class="form-control">
+                        <option value="null">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+               </div>
+              </div>
+            </div>
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <div>
+                  Coding experience
+                    </div>
+                  </a>
+                </h3>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                  If you have prior experience to programming, you can skip COEN 10: Introduction to Programming. This class will give you exposure to basic programming in C. Click the checkbox if you are comfortable with concepts such as conditionals, loops, functions, and arrays.
+                  <br />
+                  <b>Check if you want to skip COEN 10: </b><input type="checkbox" id="progExperience">
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <div>
+                  Equivalent credit 
+                    </div>
+                  </a>
+                </h3>
+              </div>
+              <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                  If you other equivalent credit for any of the following courses, check the box next to it.
+
+                  <br />
+                  <div class="col-md-6 text-right">
+                    COEN 11: <input type="checkbox" id="COEN11">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    COEN 12: <input type="checkbox" id="COEN12">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 11: <input type="checkbox" id="MATH11">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 12: <input type="checkbox" id="MATH12">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 13: <input type="checkbox" id="MATH13">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 14: <input type="checkbox" id="MATH14">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 22 or AMTH 106: <input type="checkbox" id="MATH22">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    MATH 51 or COEN 19: <input type="checkbox" id="MATH51">
+                  </div>
+                  <div class="col-md-6 text-right">
+                    CHEM 11: <input type="checkbox" id="CHEM11">
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="page-header text-right">
+            <b>Choose your major:</b>
+            <input type="checkbox" data-off-text="COEN" data-on-text="Web" name="major-switch"></input>
+          </div>
+          <div>
+            <h3 class="text-center">Your suggested schedule</h3>
+            <table class="table table-borderless" id="schedule-table">
+              <thead>
+                <tr>
+                  <th>Fall quarter</th>
+                  <th>Winter quarter</th>
+                  <th>Spring quarter</th>
+                </tr>
+              </thead>
+              <tr id="row0">
+                <td class="success">MATH 11 - Calculus I</td>
+                <td class="success">MATH 12 - Calculus II</td>
+                <td class="success">MATH 13 - Calculus III</td>
+              </tr>
+              <tr id="row1">
+                <td class="warning">COEN 10 - Intro to Programming</td>
+                <td class="warning">COEN 11 - Advanced Programming</td>
+                <td class="warning">COEN 12 - Data Structures</td>
+              </tr>
+              <tr id="row2">
+                <td class="success">CHEM 11 - Chemistry I</td>
+                <td class="success">PHYS 31 - Physics I</td>
+                <td class="success">PHYS 32 - Physics II</td>
+              </tr>
+              <tr id="row3">
+                <td class="info">CTW 1 - Critical Thinking & Writing I</td>
+                <td class="info">CTW 2 - Critical Thinking & Writing II</td>
+                <td class="warning">COEN 19 - Discrete Mathematics</td>
+              </tr>
+              <tr id="row4">
+                <td class="warning">ENGR 1 - Intro. to Engineering</td>
+                <td class="borderless"><button id="engr1-btn" class="btn btn-block btn-info">ENGR 1 here</button></td>
+                <td class="borderless"></td>
+              </tr>
+            </table>
+                <button id="print-btn" class="col-md-5 btn btn-success">
+                  <span class="glyphicon glyphicon-print"></span>
+                  Print
+                </button>
+                <button class="col-md-5 col-md-offset-2 btn btn-warning">
+                  <span class="glyphicon glyphicon-refresh"></span>   
+                  Reset
+                </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+    <script src="js/schedule-suggester.js"></script>
+  </body>
+</html>
