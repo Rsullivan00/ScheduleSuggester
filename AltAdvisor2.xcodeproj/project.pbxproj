@@ -6,11 +6,107 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		C304284919FF0B330000BA77 /* AltAdvisor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AltAdvisor.xcodeproj; sourceTree = "<group>"; };
+		C304284E19FF0B330000BA77 /* bootstrap-theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-theme.css"; sourceTree = "<group>"; };
+		C304284F19FF0B330000BA77 /* bootstrap-theme.css.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = "bootstrap-theme.css.map"; sourceTree = "<group>"; };
+		C304285019FF0B330000BA77 /* bootstrap-theme.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-theme.min.css"; sourceTree = "<group>"; };
+		C304285119FF0B330000BA77 /* bootstrap.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
+		C304285219FF0B330000BA77 /* bootstrap.css.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = bootstrap.css.map; sourceTree = "<group>"; };
+		C304285319FF0B330000BA77 /* bootstrap.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bootstrap.min.css; sourceTree = "<group>"; };
+		C304285519FF0B330000BA77 /* glyphicons-halflings-regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.eot"; sourceTree = "<group>"; };
+		C304285619FF0B330000BA77 /* glyphicons-halflings-regular.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "glyphicons-halflings-regular.svg"; sourceTree = "<group>"; };
+		C304285719FF0B330000BA77 /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
+		C304285819FF0B330000BA77 /* glyphicons-halflings-regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.woff"; sourceTree = "<group>"; };
+		C304285A19FF0B330000BA77 /* bootstrap.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootstrap.js; sourceTree = "<group>"; };
+		C304285B19FF0B330000BA77 /* bootstrap.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		C304285D19FF0B330000BA77 /* bootstrap-switch.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-switch.css"; sourceTree = "<group>"; };
+		C304285E19FF0B330000BA77 /* schedule.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = schedule.css; sourceTree = "<group>"; };
+		C304285F19FF0B330000BA77 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		C304286119FF0B330000BA77 /* bootstrap-switch.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "bootstrap-switch.js"; sourceTree = "<group>"; };
+		C304286219FF0B330000BA77 /* schedule-suggester.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "schedule-suggester.js"; sourceTree = "<group>"; };
+		C304286319FF0B330000BA77 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		C304284219FF0B190000BA77 = {
 			isa = PBXGroup;
 			children = (
+				C304284919FF0B330000BA77 /* AltAdvisor.xcodeproj */,
+				C304284C19FF0B330000BA77 /* bootstrap */,
+				C304285C19FF0B330000BA77 /* css */,
+				C304285F19FF0B330000BA77 /* index.html */,
+				C304286019FF0B330000BA77 /* js */,
+				C304286319FF0B330000BA77 /* README.md */,
 			);
+			sourceTree = "<group>";
+		};
+		C304284A19FF0B330000BA77 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C304284C19FF0B330000BA77 /* bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				C304284D19FF0B330000BA77 /* css */,
+				C304285419FF0B330000BA77 /* fonts */,
+				C304285919FF0B330000BA77 /* js */,
+			);
+			path = bootstrap;
+			sourceTree = "<group>";
+		};
+		C304284D19FF0B330000BA77 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				C304284E19FF0B330000BA77 /* bootstrap-theme.css */,
+				C304284F19FF0B330000BA77 /* bootstrap-theme.css.map */,
+				C304285019FF0B330000BA77 /* bootstrap-theme.min.css */,
+				C304285119FF0B330000BA77 /* bootstrap.css */,
+				C304285219FF0B330000BA77 /* bootstrap.css.map */,
+				C304285319FF0B330000BA77 /* bootstrap.min.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		C304285419FF0B330000BA77 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C304285519FF0B330000BA77 /* glyphicons-halflings-regular.eot */,
+				C304285619FF0B330000BA77 /* glyphicons-halflings-regular.svg */,
+				C304285719FF0B330000BA77 /* glyphicons-halflings-regular.ttf */,
+				C304285819FF0B330000BA77 /* glyphicons-halflings-regular.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		C304285919FF0B330000BA77 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				C304285A19FF0B330000BA77 /* bootstrap.js */,
+				C304285B19FF0B330000BA77 /* bootstrap.min.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		C304285C19FF0B330000BA77 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				C304285D19FF0B330000BA77 /* bootstrap-switch.css */,
+				C304285E19FF0B330000BA77 /* schedule.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		C304286019FF0B330000BA77 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				C304286119FF0B330000BA77 /* bootstrap-switch.js */,
+				C304286219FF0B330000BA77 /* schedule-suggester.js */,
+			);
+			path = js;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -30,6 +126,12 @@
 			);
 			mainGroup = C304284219FF0B190000BA77;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C304284A19FF0B330000BA77 /* Products */;
+					ProjectRef = C304284919FF0B330000BA77 /* AltAdvisor.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 			);

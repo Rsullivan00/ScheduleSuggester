@@ -1,0 +1,154 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		2917E62A19FEF1AE00D25366 /* bootstrap-theme.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-theme.css"; sourceTree = "<group>"; };
+		2917E62B19FEF1AE00D25366 /* bootstrap-theme.css.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = "bootstrap-theme.css.map"; sourceTree = "<group>"; };
+		2917E62C19FEF1AE00D25366 /* bootstrap-theme.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-theme.min.css"; sourceTree = "<group>"; };
+		2917E62D19FEF1AE00D25366 /* bootstrap.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
+		2917E62E19FEF1AE00D25366 /* bootstrap.css.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = bootstrap.css.map; sourceTree = "<group>"; };
+		2917E62F19FEF1AE00D25366 /* bootstrap.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bootstrap.min.css; sourceTree = "<group>"; };
+		2917E63119FEF1AE00D25366 /* glyphicons-halflings-regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.eot"; sourceTree = "<group>"; };
+		2917E63219FEF1AE00D25366 /* glyphicons-halflings-regular.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "glyphicons-halflings-regular.svg"; sourceTree = "<group>"; };
+		2917E63319FEF1AE00D25366 /* glyphicons-halflings-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.ttf"; sourceTree = "<group>"; };
+		2917E63419FEF1AE00D25366 /* glyphicons-halflings-regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "glyphicons-halflings-regular.woff"; sourceTree = "<group>"; };
+		2917E63619FEF1AE00D25366 /* bootstrap.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootstrap.js; sourceTree = "<group>"; };
+		2917E63719FEF1AE00D25366 /* bootstrap.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		2917E63919FEF1AE00D25366 /* bootstrap-switch.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "bootstrap-switch.css"; sourceTree = "<group>"; };
+		2917E63A19FEF1AE00D25366 /* schedule.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = schedule.css; sourceTree = "<group>"; };
+		2917E63B19FEF1AE00D25366 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		2917E63D19FEF1AE00D25366 /* bootstrap-switch.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "bootstrap-switch.js"; sourceTree = "<group>"; };
+		2917E63E19FEF1AE00D25366 /* schedule-suggester.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "schedule-suggester.js"; sourceTree = "<group>"; };
+		2917E63F19FEF1AE00D25366 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2917E62119FEEFB600D25366 = {
+			isa = PBXGroup;
+			children = (
+				2917E62819FEF1AE00D25366 /* bootstrap */,
+				2917E63819FEF1AE00D25366 /* css */,
+				2917E63B19FEF1AE00D25366 /* index.html */,
+				2917E63C19FEF1AE00D25366 /* js */,
+				2917E63F19FEF1AE00D25366 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		2917E62819FEF1AE00D25366 /* bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				2917E62919FEF1AE00D25366 /* css */,
+				2917E63019FEF1AE00D25366 /* fonts */,
+				2917E63519FEF1AE00D25366 /* js */,
+			);
+			path = bootstrap;
+			sourceTree = "<group>";
+		};
+		2917E62919FEF1AE00D25366 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				2917E62A19FEF1AE00D25366 /* bootstrap-theme.css */,
+				2917E62B19FEF1AE00D25366 /* bootstrap-theme.css.map */,
+				2917E62C19FEF1AE00D25366 /* bootstrap-theme.min.css */,
+				2917E62D19FEF1AE00D25366 /* bootstrap.css */,
+				2917E62E19FEF1AE00D25366 /* bootstrap.css.map */,
+				2917E62F19FEF1AE00D25366 /* bootstrap.min.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		2917E63019FEF1AE00D25366 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2917E63119FEF1AE00D25366 /* glyphicons-halflings-regular.eot */,
+				2917E63219FEF1AE00D25366 /* glyphicons-halflings-regular.svg */,
+				2917E63319FEF1AE00D25366 /* glyphicons-halflings-regular.ttf */,
+				2917E63419FEF1AE00D25366 /* glyphicons-halflings-regular.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		2917E63519FEF1AE00D25366 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				2917E63619FEF1AE00D25366 /* bootstrap.js */,
+				2917E63719FEF1AE00D25366 /* bootstrap.min.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		2917E63819FEF1AE00D25366 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				2917E63919FEF1AE00D25366 /* bootstrap-switch.css */,
+				2917E63A19FEF1AE00D25366 /* schedule.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		2917E63C19FEF1AE00D25366 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				2917E63D19FEF1AE00D25366 /* bootstrap-switch.js */,
+				2917E63E19FEF1AE00D25366 /* schedule-suggester.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		2917E62219FEEFB600D25366 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 2917E62519FEEFB600D25366 /* Build configuration list for PBXProject "AltAdvisor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2917E62119FEEFB600D25366;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		2917E62619FEEFB600D25366 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		2917E62719FEEFB600D25366 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2917E62519FEEFB600D25366 /* Build configuration list for PBXProject "AltAdvisor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2917E62619FEEFB600D25366 /* Debug */,
+				2917E62719FEEFB600D25366 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2917E62219FEEFB600D25366 /* Project object */;
+}
