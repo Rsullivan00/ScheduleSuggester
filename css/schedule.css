@@ -6,6 +6,9 @@
     border: none;
 }
 
+#schedule-table > tbody > tr > td {
+    width: 33.33%;
+}
 
 /*
  * Styles for printing
@@ -23,5 +26,8 @@
         display: none;
     }
     #schedule-table {
+    }
+    #color-key {
+        display: none;
     }
 }

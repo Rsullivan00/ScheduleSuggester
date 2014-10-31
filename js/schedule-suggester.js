@@ -16,7 +16,8 @@ var TYPES = {
 };
 
 var COURSES = {
-    math: [new Course("MATH 11 - Calculus I", TYPES.mathScience),
+    math: [new Course("MATH 9 - Precalculus", TYPES.mathScience),
+           new Course("MATH 11 - Calculus I", TYPES.mathScience),
            new Course("MATH 12 - Calculus II", TYPES.mathScience),
            new Course("MATH 13 - Calculus III", TYPES.mathScience),
            new Course("MATH 14 - Calculus IV", TYPES.mathScience),
@@ -51,13 +52,15 @@ var COURSES = {
 
 var credits = {
    math: function() { 
-	var creds = 0;
-	if (this.math11) creds++;
-	if (this.math12) creds++;
-	if (this.math13) creds++;
-	if (this.math14) creds++;
-	return creds; 
+        var creds = 0;
+        if (this.math9) creds++;
+        if (this.math11) creds++;
+        if (this.math12) creds++;
+        if (this.math13) creds++;
+        if (this.math14) creds++;
+        return creds; 
     },
+    math9: true,
     math11: false,
     math12: false,
     math13: false,
@@ -87,7 +90,7 @@ var getSchedule = function() {
         [COURSES.ctw[0], 
             COURSES.math[credits.math()], 
             coreOrCourse(credits.chem11, COURSES.chem11), 
-            coreOrCourse(credits.coen11, COURSES.coen11)
+            coreOrCourse(credits.coen10, COURSES.coen10)
         ],
         [COURSES.ctw[1], 
             COURSES.math[credits.math() + 1], 
@@ -227,11 +230,22 @@ $(document).ready(function() {
         $('#' + k).on('change', function () {selectChange($(this));});    
     });
 
-    /* Need to account for deselecting (same for SELECT elements above) */
     $('#progExperience').on('change', function() {
-
-        credits.coen11 = true;
+        credits.coen10 = !credits.coen10;
         drawSchedule(); 
+    });
+
+    /* Equivalent credit */
+    $('input.credit').on('change', function(e) {
+        var id = e.target.id.toLowerCase();
+        credits[id] = !credits[id];
+        drawSchedule();
+    });
+
+    /* Calculus readiness exam */
+    $('#calcReadiness').on('change', function() {
+        credits.math9 = !credits.math9;
+        drawSchedule();
     });
 
     drawSchedule();
