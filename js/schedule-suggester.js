@@ -236,9 +236,30 @@ $(document).ready(function() {
     });
 
     /* Equivalent credit */
-    $('input.credit').on('change', function(e) {
+    $('input.credit:checkbox').on('change', function(e) {
         var id = e.target.id.toLowerCase();
         credits[id] = !credits[id];
+        drawSchedule();
+    });
+
+    /* This function is some awful code. Everyone close your eyes before it burns you. */
+    $('input.credit:radio').on('change', function(e) {
+        var val = e.target.value;
+
+        credits.math11 = false;
+        credits.math12 = false;
+        credits.math13 = false;
+        credits.math14 = false;
+
+        if (val-- > 0)
+            credits.math11 = true;
+        if (val-- > 0)
+            credits.math12 = true;
+        if (val-- > 0)
+            credits.math13 = true;
+        if (val-- > 0)
+            credits.math14 = true;
+
         drawSchedule();
     });
 
