@@ -16,14 +16,25 @@ var TYPES = {
 };
 
 var COURSES = {
-    math: [new Course("MATH 9 - Precalculus", TYPES.mathScience),
-           new Course("MATH 11 - Calculus I", TYPES.mathScience),
-           new Course("MATH 12 - Calculus II", TYPES.mathScience),
-           new Course("MATH 13 - Calculus III", TYPES.mathScience),
-           new Course("MATH 14 - Calculus IV", TYPES.mathScience),
-           new Course("AMTH 106 - Differential Equations", TYPES.mathScience),
-           new Course("AMTH 108 - Probability and Statistics", TYPES.mathScience),
-           new Course("MATH 53 - Linear Algebra", TYPES.mathScience)],
+    math9:  new Course("MATH 9 - Precalculus", TYPES.mathScience),
+    math11: new Course("MATH 11 - Calculus I", TYPES.mathScience),
+    math12: new Course("MATH 12 - Calculus II", TYPES.mathScience),
+    math13: new Course("MATH 13 - Calculus III", TYPES.mathScience),
+    math14: new Course("MATH 14 - Calculus IV", TYPES.mathScience),
+    amth106: new Course("AMTH 106 - Differential Equations", TYPES.mathScience),
+    amth108: new Course("AMTH 108 - Probability and Statistics", TYPES.mathScience),
+    math53: new Course("MATH 53 - Linear Algebra", TYPES.mathScience),
+    getMath: function(num) {
+        var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
+        var filteredCourses = [];
+        for (var key in courses) {
+            var course = courses[key];
+            if (!credits[course])
+                filteredCourses.push(this[course]);
+        }
+
+        return filteredCourses[num];
+    },
     
     coen10: new Course("COEN 10 - Intro. to Programming", TYPES.engr),
     coen11: new Course("COEN 11 - Advanced Programming", TYPES.engr),
@@ -65,14 +76,14 @@ var credits = {
     math12: false,
     math13: false,
     math14: false,
-    coen: 0,
+
     coen10: false,
     coen11: false,
     coen12: false,
-    phys: 0,
+
     phys31: false,
     phys32: false,
-    chem: 0,
+
     chem11: false,
 };
 
@@ -81,24 +92,24 @@ var isEngr1Fall = true;
 
 var getSchedule = function() { 
     function coreOrCourse(credit, course) {
-	if (credit)
-	    return COURSES.core;
-	
-	return course;
+        if (credit)
+            return COURSES.core;
+        
+        return course;
     }
     gschedule = [
         [COURSES.ctw[0], 
-            COURSES.math[credits.math()], 
+            COURSES.getMath(0), 
             coreOrCourse(credits.chem11, COURSES.chem11), 
             coreOrCourse(credits.coen10, COURSES.coen10)
         ],
         [COURSES.ctw[1], 
-            COURSES.math[credits.math() + 1], 
+            COURSES.getMath(1), 
             coreOrCourse(credits.phys31, COURSES.phys31),
             coreOrCourse(credits.coen11, COURSES.coen11)
         ],
         [coreOrCourse(credits.coen19, COURSES.coen19), 
-            COURSES.math[credits.math() + 2], 
+            COURSES.getMath(2), 
             coreOrCourse(credits.phys32, COURSES.phys32),
             coreOrCourse(credits.coen12, COURSES.coen12)]
     ];
@@ -171,6 +182,7 @@ var SELECTS = {
         /* TODO: Fix bug with calcAB and BC undoing */
         if (score == 3) {
             credits.math11 = true; 
+            credits.math12 = false; 
         } else if (score > 3) {
             credits.math11 = true; 
             credits.math12 = true; 
@@ -180,7 +192,9 @@ var SELECTS = {
         }
     },
     csci:   function(score) { 
-        if (score > 3) {
+        if (score == 3) {
+            credits.coen10 = true;
+        } else if (score > 3) {
             credits.coen11 = true; 
         } else {
             credits.coen11 = false; 
@@ -217,6 +231,10 @@ var selectChange = function(select) {
 	val = 0;
     SELECTS[$(select).attr('id')](val);
     drawSchedule();
+}
+
+var reset = function() {
+    c
 }
 
 $(document).ready(function() {
