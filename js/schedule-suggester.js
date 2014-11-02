@@ -61,31 +61,7 @@ var COURSES = {
     engrButton: new Course(ENGR_BUTTON_TEXT, "") 
 };
 
-var credits = {
-   math: function() { 
-        var creds = 0;
-        if (this.math9) creds++;
-        if (this.math11) creds++;
-        if (this.math12) creds++;
-        if (this.math13) creds++;
-        if (this.math14) creds++;
-        return creds; 
-    },
-    math9: true,
-    math11: false,
-    math12: false,
-    math13: false,
-    math14: false,
-
-    coen10: false,
-    coen11: false,
-    coen12: false,
-
-    phys31: false,
-    phys32: false,
-
-    chem11: false,
-};
+var credits;
 
 var gschedule;
 var isEngr1Fall = true;
@@ -175,20 +151,25 @@ var SELECTS = {
         if (score > 3) {
             credits.math11 = true;
         } else {
-            credits.math11 = false;
+            if ($('#calcBC').val() < 3 && $('input[name=math]:checked').val() < 1)
+                credits.math11 = false;
         }
     },
     calcBC: function(score) { 
         /* TODO: Fix bug with calcAB and BC undoing */
         if (score == 3) {
             credits.math11 = true; 
-            credits.math12 = false; 
+
+            if ($('input[name=math]:checked').val() < 2)
+                credits.math12 = false; 
         } else if (score > 3) {
             credits.math11 = true; 
             credits.math12 = true; 
         } else {
-            credits.math11 = false;
-            credits.math12 = false;
+            if ($('#calcAB').val() < 4 && $('input[name=math]:checked').val() < 1)
+                credits.math11 = false;
+            else if ($('input[name=math]:checked').val() < 2)
+                credits.math12 = false;
         }
     },
     csci:   function(score) { 
@@ -197,21 +178,24 @@ var SELECTS = {
         } else if (score > 3) {
             credits.coen11 = true; 
         } else {
-            credits.coen11 = false; 
+            if (!$('#COEN11').prop('checked'))
+                credits.coen11 = false; 
         }
     },
     chem:   function(score) { 
         if (score > 2) {
             credits.chem11 = true; 
         } else {
-            credits.chem11 = false; 
+            if (!$('#CHEM11').prop('checked'))
+                credits.chem11 = false; 
         }
     },
     physM:  function(score) { 
         if (score > 3) {
             credits.phys31 = true; 
         } else {
-            credits.phys31 = false; 
+            if (!$('#PHYS31').prop('checked'))
+                credits.phys31 = false; 
         }
     },
     physEM: function(score) { 
@@ -219,7 +203,8 @@ var SELECTS = {
         if (score > 4) {
             credits.phys33 = true; 
         } else {
-            credits.phys33 = false; 
+            if (!$('#PHYS33').prop('checked'))
+                credits.phys33 = false; 
         }
     }
 };
@@ -228,20 +213,52 @@ var selectChange = function(select) {
    var val = $(select).val();
     /* N/A selected corresponds to a score of 0 */
     if (val === "N/A") 
-	val = 0;
+        val = 0;
     SELECTS[$(select).attr('id')](val);
     drawSchedule();
-}
+};
 
 var reset = function() {
-    c
-}
+    credits = {
+        math9: true,
+        math11: false,
+        math12: false,
+        math13: false,
+        math14: false,
+
+        coen10: false,
+        coen11: false,
+        coen12: false,
+
+        phys31: false,
+        phys32: false,
+
+        chem11: false
+    };
+
+    /* Uncheck all checkboxes */
+    $("input:checkbox").prop('checked', false);
+
+    /* Reset all select elements */
+    $("select").val('0');
+
+    /* Reset radio buttons */
+    $("input:radio[value='0']").prop('checked', true);
+
+    drawSchedule();
+};
 
 $(document).ready(function() {
     /* Enable custom switch */
     $("[name='major-switch']").bootstrapSwitch();
     /* Bind print button to window.print() */
-    $("#print-btn").click(function() {window.print();});
+    $("#print-btn").click(function() {
+        window.print();
+    });
+    /* Reset button just calls the reset function */
+    $("#reset-btn").click(function() {
+        reset();
+    });
 
     /* Bind select elements to updating functions defined in SELECTS */
     $.each(SELECTS, function(k) {
@@ -287,5 +304,5 @@ $(document).ready(function() {
         drawSchedule();
     });
 
-    drawSchedule();
+    reset();
 });
