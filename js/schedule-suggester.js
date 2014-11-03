@@ -25,7 +25,7 @@ var COURSES = {
     amth108: new Course("AMTH 108 - Probability and Statistics", TYPES.mathScience),
     math53: new Course("MATH 53 - Linear Algebra", TYPES.mathScience),
     getMath: function(num) {
-        var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
+        var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53", "core", "core", "core"];
         var filteredCourses = [];
         for (var key in courses) {
             var course = courses[key];
@@ -173,13 +173,17 @@ var SELECTS = {
         }
     },
     csci:   function(score) { 
-        if (score == 3) {
-            credits.coen10 = true;
-        } else if (score > 3) {
-            credits.coen11 = true; 
-        } else {
-            if (!$('#COEN11').prop('checked'))
+        var coen11 = $('#COEN11').prop('checked');
+        if (score < 3) {
+            if (!coen11)
                 credits.coen11 = false; 
+        } else if (score == 3) {
+            credits.coen10 = true;
+            if (!coen11)
+                credits.coen11 = false;
+        } else if (score > 3) {
+            credits.coen10 = true;
+            credits.coen11 = true; 
         }
     },
     chem:   function(score) { 
@@ -277,12 +281,16 @@ $(document).ready(function() {
         drawSchedule();
     });
 
-    /* This function is some awful code. Everyone close your eyes before it burns you. */
+    /* Handle reset button changing values. */
     $('input.credit:radio').on('change', function(e) {
         var val = e.target.value;
 
-        credits.math11 = false;
-        credits.math12 = false;
+        var calcAB = $('#calcAB').val();
+        var calcBC = $('#calcBC').val();
+        if (calcAB < 4 && calcBC < 3)
+            credits.math11 = false;
+        if (calcBC < 4)
+            credits.math12 = false;
         credits.math13 = false;
         credits.math14 = false;
 
