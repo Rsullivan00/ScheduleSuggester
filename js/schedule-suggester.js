@@ -183,16 +183,16 @@ var SELECTS = {
         }
     },
     csci:   function(score) { 
-        var coen11 = $('#COEN11').prop('checked');
+        var coen = $('input.credit:radio[name=coen]:checked').val();
         var experience = $('#progExperience').prop('checked');
         if (score < 3) {
-            if (!experience)
+            if (coen < 1 && !$('#progExperience').prop('checked'))
                 credits.coen10 = false;
-            if (!coen11)
+            if (coen < 2) /* COEN == 2 corresponds to credit for COEN11 */
                 credits.coen11 = false; 
         } else if (score == 3) {
             credits.coen10 = true;
-            if (!coen11)
+            if (coen < 2)
                 credits.coen11 = false;
         } else if (score > 3) {
             credits.coen10 = true;
