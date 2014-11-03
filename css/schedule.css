@@ -25,7 +25,8 @@
     button.btn {
         display: none;
     }
-    #schedule-table {
+    #table-description {
+        display: none;
     }
     #color-key {
         display: none;
