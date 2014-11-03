@@ -239,14 +239,7 @@ var EQUIVALENT = {
     math53: function(checked) {
         credits.math53 = !credits.math53;
     },
-    coen11: function(checked) {
-        if ($('#csci').val() < 4)
-            credits.coen11 = !credits.coen11;
-    },
-    coen12: function(checked) {
-        credits.coen12 = !credits.coen12;
-    },
-    coen20: function(checked) {
+   coen20: function(checked) {
         credits.coen20 = !credits.coen20;
     },
     elen50: function(checked) {
@@ -323,9 +316,9 @@ $(document).ready(function() {
     });
 
     /* Skip COEN 10 if user has programming experience. */
-    $('#progExperience').on('change', function() {
-        if ($('#csci').val() < 3)
-            credits.coen10 = !credits.coen10;
+    $('#progExperience').on('change', function(e) {
+        if ($('#csci').val() < 3 && !credits.coen11)
+            credits.coen10 = e.target.checked;
 
         drawSchedule(); 
     });
@@ -337,8 +330,8 @@ $(document).ready(function() {
         drawSchedule();
     });
 
-    /* Handle reset button changing values. */
-    $('input.credit:radio').on('change', function(e) {
+    /* Handle math radio buttons value changing. */
+    $('input.credit:radio[name="math"]').on('change', function(e) {
         var val = e.target.value;
 
         var calcAB = $('#calcAB').val();
@@ -358,6 +351,29 @@ $(document).ready(function() {
             credits.math13 = true;
         if (val-- > 0)
             credits.math14 = true;
+
+        drawSchedule();
+    });
+
+    /* Handle coen radio buttons value changing. */
+    $('input.credit:radio[name="coen"]').on('change', function(e) {
+        var val = e.target.value;
+
+        var csci = $('#csci').val();
+
+        if (csci < 3 && !$('#progExperience').prop('checked'))
+            credits.coen10 = false;
+        if (csci < 4)
+            credits.coen11 = false;
+
+        credits.coen12 = false;
+
+        if (val-- > 0)
+            credits.coen10 = true;
+        if (val-- > 0)
+            credits.coen11 = true;
+        if (val-- > 0)
+            credits.coen12 = true;
 
         drawSchedule();
     });
