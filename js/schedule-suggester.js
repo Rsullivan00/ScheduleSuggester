@@ -234,6 +234,47 @@ var selectChange = function(select) {
     drawSchedule();
 };
 
+/* Handlers for changing equivalent credit switches */
+var EQUIVALENT = {
+    math53: function(checked) {
+        credits.math53 = !credits.math53;
+    },
+    coen11: function(checked) {
+        if ($('#csci').val() < 4)
+            credits.coen11 = !credits.coen11;
+    },
+    coen12: function(checked) {
+        credits.coen12 = !credits.coen12;
+    },
+    coen20: function(checked) {
+        credits.coen20 = !credits.coen20;
+    },
+    elen50: function(checked) {
+        credits.elen50 = !credits.elen50;
+    },
+    coen19: function(checked) {
+        credits.coen19 = !credits.coen19;
+    },
+    amth106: function(checked) {
+        credits.amth106 = !credits.amth106;
+    },
+    chem11: function(checked) {
+        if ($('#chem').val() < 3)
+            credits.chem11 = !credits.chem11;
+    },
+    phys31: function(checked) {
+        if ($('#physM').val() < 4)
+            credits.phys31 = !credits.phys31;
+    },
+    phys32: function(checked) {
+        credits.phys32 = !credits.phys32;
+    },
+    phys33: function(checked) {
+        if ($('#physEM').val() < 4)
+            credits.phys33 = !credits.phys33;
+    }
+};
+
 var reset = function() {
     credits = {
         math9: true,
@@ -292,7 +333,7 @@ $(document).ready(function() {
     /* Equivalent credit */
     $('input.credit:checkbox').on('change', function(e) {
         var id = e.target.id.toLowerCase();
-        credits[id] = !credits[id];
+        EQUIVALENT[id](e.target.checked);
         drawSchedule();
     });
 
