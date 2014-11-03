@@ -323,8 +323,16 @@ $(document).ready(function() {
 
     /* Calculus readiness exam */
     $('#calcReadiness').on('change', function() {
-        credits.math9 = !credits.math9;
-        drawSchedule();
+        if (!credits.math11) {
+            credits.math9 = !credits.math9;
+            drawSchedule();
+        } else {
+            $('#readinessWarning').fadeIn();
+            setTimeout(function() {
+                $('#readinessWarning').fadeOut();
+            }, 5000);
+            $('#calcReadiness').prop('checked', false);
+        }
     });
 
     reset();
