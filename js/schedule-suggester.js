@@ -63,7 +63,6 @@ var COURSES = {
 
 var credits;
 
-var gschedule;
 var isEngr1Fall = true;
 
 var getSchedule = function() { 
@@ -73,7 +72,7 @@ var getSchedule = function() {
         
         return course;
     }
-    gschedule = [
+    var schedule = [
         [COURSES.ctw[0], 
             COURSES.getMath(0), 
             coreOrCourse(credits.chem11, COURSES.chem11), 
@@ -90,38 +89,49 @@ var getSchedule = function() {
             coreOrCourse(credits.coen12, COURSES.coen12)]
     ];
 
+    /* If physics 31 and 32 are not present, put physics 33 into the first empty fall quarter slot. */
+    if ($.inArray(COURSES.phys31, schedule[1]) == -1 &&
+        $.inArray(COURSES.phys32, schedule[2]) == -1 &&
+        !credits.phys33) {
+        /* Find empty slot in fall */
+        var index = $.inArray(COURSES.core, schedule[0]); 
+        if (index > -1) {
+            schedule[0][index] = COURSES.phys33;
+        }
+    }
+
     /* If we have two adjacent core slots, replace with C&I */
-    if ($.inArray(COURSES.core, gschedule[0]) != -1 && $.inArray(COURSES.core, gschedule[1]) != -1) {
+    if ($.inArray(COURSES.core, schedule[0]) != -1 && $.inArray(COURSES.core, schedule[1]) != -1) {
 	/* Check that C&I is not already in the schedule */
-	if ($.inArray(COURSES.ci[0], gschedule[0]) == -1 && $.inArray(COURSES.ci[1])) {
-	    var index = $.inArray(COURSES.core, gschedule[0]);
-	    gschedule[0][index] = COURSES.ci[0];
-	    index = $.inArray(COURSES.core, gschedule[1]);
-	    gschedule[1][index] = COURSES.ci[1];
+	if ($.inArray(COURSES.ci[0], schedule[0]) == -1 && $.inArray(COURSES.ci[1])) {
+	    var index = $.inArray(COURSES.core, schedule[0]);
+	    schedule[0][index] = COURSES.ci[0];
+	    index = $.inArray(COURSES.core, schedule[1]);
+	    schedule[1][index] = COURSES.ci[1];
 	}
-    } else if ($.inArray(COURSES.core, gschedule[1]) != -1 && $.inArray(COURSES.core, gschedule[2]) != -1) {
+    } else if ($.inArray(COURSES.core, schedule[1]) != -1 && $.inArray(COURSES.core, schedule[2]) != -1) {
 	/* Check that C&I is not already in the schedule */
-	if ($.inArray(COURSES.ci[0], gschedule[1]) == -1 && $.inArray(COURSES.ci[2])) {
-	    var index = $.inArray(COURSES.core, gschedule[1]);
-	    gschedule[1][index] = COURSES.ci[0];
-	    index = $.inArray(COURSES.core, gschedule[2]);
-	    gschedule[2][index] = COURSES.ci[1];
+	if ($.inArray(COURSES.ci[0], schedule[1]) == -1 && $.inArray(COURSES.ci[2])) {
+	    var index = $.inArray(COURSES.core, schedule[1]);
+	    schedule[1][index] = COURSES.ci[0];
+	    index = $.inArray(COURSES.core, schedule[2]);
+	    schedule[2][index] = COURSES.ci[1];
 	}
     }
 
     if (isEngr1Fall) {
-        gschedule[0].push(COURSES.engr1);
-        gschedule[1].push(COURSES.engrButton);
+        schedule[0].push(COURSES.engr1);
+        schedule[1].push(COURSES.engrButton);
     } else {
-        gschedule[1].push(COURSES.engr1);
-        gschedule[0].push(COURSES.engrButton);
+        schedule[1].push(COURSES.engr1);
+        schedule[0].push(COURSES.engrButton);
     }
 
-    return gschedule;
+    return schedule;
 };
 
 var setSchedule = function(schedule) {
-    gschedule = schedule;
+    schedule = schedule;
 
     drawSchedule();
 };
@@ -156,25 +166,28 @@ var SELECTS = {
         }
     },
     calcBC: function(score) { 
-        /* TODO: Fix bug with calcAB and BC undoing */
+        var mathCredit = $('input[name=math]:checked').val();
         if (score == 3) {
             credits.math11 = true; 
 
-            if ($('input[name=math]:checked').val() < 2)
+            if (mathCredit < 2)
                 credits.math12 = false; 
         } else if (score > 3) {
             credits.math11 = true; 
             credits.math12 = true; 
         } else {
-            if ($('#calcAB').val() < 4 && $('input[name=math]:checked').val() < 1)
+            if ($('#calcAB').val() < 4 && mathCredit < 1)
                 credits.math11 = false;
-            else if ($('input[name=math]:checked').val() < 2)
+            else if (mathCredit < 2)
                 credits.math12 = false;
         }
     },
     csci:   function(score) { 
         var coen11 = $('#COEN11').prop('checked');
+        var experience = $('#progExperience').prop('checked');
         if (score < 3) {
+            if (!experience)
+                credits.coen10 = false;
             if (!coen11)
                 credits.coen11 = false; 
         } else if (score == 3) {
@@ -203,8 +216,7 @@ var SELECTS = {
         }
     },
     physEM: function(score) { 
-        credits.setPhys(1); 
-        if (score > 4) {
+        if (score > 3) {
             credits.phys33 = true; 
         } else {
             if (!$('#PHYS33').prop('checked'))
@@ -269,8 +281,11 @@ $(document).ready(function() {
         $('#' + k).on('change', function () {selectChange($(this));});    
     });
 
+    /* Skip COEN 10 if user has programming experience. */
     $('#progExperience').on('change', function() {
-        credits.coen10 = !credits.coen10;
+        if ($('#csci').val() < 3)
+            credits.coen10 = !credits.coen10;
+
         drawSchedule(); 
     });
 
