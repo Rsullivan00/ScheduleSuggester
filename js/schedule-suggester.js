@@ -161,12 +161,12 @@ var SELECTS = {
         if (score > 3) {
             credits.math11 = true;
         } else {
-            if ($('#calcBC').val() < 3 && $('input[name=math]:checked').val() < 1)
+            if ($('#calcBC').val() < 3 && $('input[name="math"]:checked').val() < 1)
                 credits.math11 = false;
         }
     },
     calcBC: function(score) { 
-        var mathCredit = $('input[name=math]:checked').val();
+        var mathCredit = $('input[name="math"]:checked').val();
         if (score == 3) {
             credits.math11 = true; 
 
@@ -183,7 +183,7 @@ var SELECTS = {
         }
     },
     csci:   function(score) { 
-        var coen = $('input.credit:radio[name=coen]:checked').val();
+        var coen = $('input.credit:radio[name="coen"]:checked').val();
         var experience = $('#progExperience').prop('checked');
         if (score < 3) {
             if (coen < 1 && !$('#progExperience').prop('checked'))
@@ -317,7 +317,8 @@ $(document).ready(function() {
 
     /* Skip COEN 10 if user has programming experience. */
     $('#progExperience').on('change', function(e) {
-        if ($('#csci').val() < 3 && !credits.coen11)
+        var coen = $('input.credit:radio[name="coen"]:checked').val();
+        if ($('#csci').val() < 3 && coen < 1)
             credits.coen10 = e.target.checked;
 
         drawSchedule(); 
