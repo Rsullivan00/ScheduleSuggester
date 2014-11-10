@@ -111,6 +111,22 @@
                       </select>
                     </div>
                   </div>
+                  <div class="row">
+                    <div class="col-md-7">
+                    Environmental Science  
+                    </div>
+                    <div class="col-md-5">
+                      <select id="envs" class="form-control">
+                        <option value="0">N/A</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                 </div>
+
                    <div class="row">
                     <div class="col-md-7">
                       Physics C: Mechanics
@@ -125,22 +141,7 @@
                         <option>5</option>
                       </select>
                     </div>
-                  </div>
-                   <div class="row">
-                    <div class="col-md-7">
-                      Physics C: Electricity &amp; Magnetism
-                    </div>
-                    <div class="col-md-5">
-                      <select id="physEM" class="form-control">
-                        <option value="0">N/A</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
+                 </div>
                </div>
               </div>
             </div>
@@ -230,15 +231,19 @@
                       CHEM 11 <input type="checkbox" id="CHEM11" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
+                      CHEM 12<input type="checkbox" id="PHYS32" class="credit">
+                  </div>
+                  <div class="col-md-4 text-right">
                       PHYS 31 <input type="checkbox" id="PHYS31" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
                       PHYS 32 <input type="checkbox" id="PHYS32" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
-                      PHYS 33 <input type="checkbox" id="PHYS33" class="credit">
+                      ENVS 21<input type="checkbox" id="ENVS21" class="credit">
                   </div>
-                </div>
+
+               </div>
               </div>
             </div>
             <div class="panel panel-success">
@@ -353,6 +358,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-switch.js"></script>
+    <script src="js/tests.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/equivalent-credit.js"></script>
     <script src="js/schedule-suggester.js"></script>
   </body>
 </html>
