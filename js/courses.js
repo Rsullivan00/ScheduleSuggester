@@ -21,18 +21,7 @@ var COURSES = {
     amth106: new Course("AMTH 106 - Differential Equations", TYPES.mathScience),
     amth108: new Course("AMTH 108 - Probability and Statistics", TYPES.mathScience),
     math53: new Course("MATH 53 - Linear Algebra", TYPES.mathScience),
-    getMath: function(num) {
-        var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53", "core", "core", "core"];
-        var filteredCourses = [];
-        for (var key in courses) {
-            var course = courses[key];
-            if (!credits[course])
-                filteredCourses.push(this[course]);
-        }
 
-        return filteredCourses[num];
-    },
-    
     coen10: new Course("COEN 10 - Intro. to Programming", TYPES.engr),
     coen11: new Course("COEN 11 - Advanced Programming", TYPES.engr),
     coen12: new Course("COEN 12 - Data Structures", TYPES.engr),

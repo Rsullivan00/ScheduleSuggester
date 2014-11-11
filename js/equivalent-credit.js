@@ -3,7 +3,7 @@ var EQUIVALENT = {
     math53: function(checked) {
         credits.math53 = checked;
     },
-   coen20: function(checked) {
+    coen20: function(checked) {
         credits.coen20 = checked;
     },
     elen50: function(checked) {
@@ -42,6 +42,7 @@ var bindEquivalentCredit = function() {
 
     /* Handle math radio buttons value changing. */
     $('input.credit:radio[name="math"]').on('change', function(e) {
+        /*
         var val = e.target.value;
 
         var calcAB = $('#calcAB').val();
@@ -61,12 +62,13 @@ var bindEquivalentCredit = function() {
             credits.math13 = true;
         if (val-- > 0)
             credits.math14 = true;
-
+*/
         drawSchedule();
     });
 
     /* Handle coen radio buttons value changing. */
     $('input.credit:radio[name="coen"]').on('change', function(e) {
+        /*
         var val = e.target.value;
 
         var csci = $('#csci').val();
@@ -85,7 +87,7 @@ var bindEquivalentCredit = function() {
         if (val-- > 0)
             credits.coen12 = true;
 
+            */
         drawSchedule();
     });
-
 };

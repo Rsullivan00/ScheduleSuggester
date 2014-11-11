@@ -9,27 +9,51 @@ var isEngr1Fall = true;
 /* Uses the COURSES and credits objects to return a matrix of Course objects. */
 var getSchedule = function() { 
     /* Used to insert a core course if the user already has credit for the course given as a parameter. */
-    function coreOrCourse(credit, course) {
-        if (credit)
-            return COURSES.core;
+    function getCourse(courseName) {
+        var selector = '#' + courseName.toUpperCase();
+        if ($(selector).prop('type') == 'checkbox') { 
+            if ($(selector).prop('checked')) 
+                return COURSES.core;
+        } else  {
+            /* Else it's a radio button */
+            var radioSelector = 'input.credit:radio[name="' + $(selector).prop('name') + '"]:checked';
+            if ($(radioSelector).val() >= $(selector).val()) 
+                return COURSES.core;
+        }
         
-        return course;
+        return COURSES[courseName];
     }
+
+    function getMath(num) {
+        var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
+        var filteredCourses = [];
+        for (var key in courses) {
+            var course = courses[key];
+            course = getCourse(course);
+            if (course != COURSES.core)
+                filteredCourses.push(course);
+        }
+
+        filteredCourses.push([COURSES.core, COURSES.core, COURSES.core]);
+
+        return filteredCourses[num];
+    }
+    
     var schedule = [
         [COURSES.ctw[0], 
-            COURSES.getMath(0), 
-            coreOrCourse(credits.chem11, COURSES.chem11), 
-            coreOrCourse(credits.coen10, COURSES.coen10)
+            getMath(0), 
+            getCourse('chem11'), 
+            getCourse('coen10')
         ],
         [COURSES.ctw[1], 
-            COURSES.getMath(1), 
-            coreOrCourse(credits.phys31, COURSES.phys31),
-            coreOrCourse(credits.coen11, COURSES.coen11)
+            getMath(1), 
+            getCourse('phys31'),
+            getCourse('coen11')
         ],
-        [coreOrCourse(credits.coen19, COURSES.coen19), 
-            COURSES.getMath(2), 
-            coreOrCourse(credits.phys32, COURSES.phys32),
-            coreOrCourse(credits.coen12, COURSES.coen12)]
+        [getCourse('coen19'), 
+            getMath(2), 
+            getCourse('phys32'),
+            getCourse('coen12')]
     ];
 
     /* If we have two adjacent core slots, replace with C&I */
@@ -158,7 +182,7 @@ $(document).ready(function() {
             $('#readinessWarning').fadeIn();
             setTimeout(function() {
                 $('#readinessWarning').fadeOut();
-            }, 5000);
+            }, 10000);
             $('#calcReadiness').prop('checked', false);
         }
     });
