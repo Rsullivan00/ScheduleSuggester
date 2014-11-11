@@ -166,8 +166,15 @@
                           </h5>
                       </div>
                   </div>
+                    <div class="hidden" hidden>
+                      MATH 9<input type="radio" name="math" id="MATH9" class="credit" value="-1">
+                    </div>
                   <div class="col-md-11 col-md-offset-1">
-                    No math credit <input type="radio" name="math" id="noMath" class="credit" checked value="0">
+                    No math credit <input type="radio" name="math" id="MATH-1" class="credit" checked value="0">
+                  <span class="text-danger" id="calcReadinessWarning" hidden>
+                    You have chosen to take MATH 9.
+                  </span>
+
                   </div>
                   <div class="row">
                     <div class="col-md-3 text-right">
@@ -231,7 +238,7 @@
                       CHEM 11 <input type="checkbox" id="CHEM11" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
-                      CHEM 12<input type="checkbox" id="PHYS32" class="credit">
+                      CHEM 12 <input type="checkbox" id="CHEM12" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
                       PHYS 31 <input type="checkbox" id="PHYS31" class="credit">
@@ -240,7 +247,7 @@
                       PHYS 32 <input type="checkbox" id="PHYS32" class="credit">
                   </div>
                   <div class="col-md-4 text-right">
-                      ENVS 21<input type="checkbox" id="ENVS21" class="credit">
+                      ENVS 21 <input type="checkbox" id="ENVS21" class="credit">
                   </div>
 
                </div>
@@ -261,8 +268,8 @@
                             If you believe you are not ready to take an introductory course in calculus and/or did not perform well on the Calculus Readiness Exam on eCampus, please check the box below.
                             
                             <br />
-                            <b>Check if you want to take MATH 9 (Precalculus) Fall Quarter: </b><input type="checkbox" id="calcReadiness"><span class="text-danger" id="readinessWarning" hidden> You already have credit for MATH 11.</span>
-                    </div>
+                            <b>Check if you want to take MATH 9 (Precalculus) Fall Quarter: </b><input type="checkbox" id="calcReadiness">                   
+                  </div>
                 </div>
             </div>
             <div class="panel panel-danger">
@@ -280,7 +287,7 @@
                             If you have prior experience to programming, you can skip COEN 10: Introduction to Programming. This class will give you exposure to basic programming in C. Click the checkbox if you are comfortable with concepts such as conditionals, loops, functions, and arrays.
                             
                             <br />
-                            <b>Check if you want to skip COEN 10: </b><input type="checkbox" id="progExperience">
+                            <b>Check if you want to skip COEN 10: </b><input type="checkbox" id="progExperience"><span class="text-danger" id="coen10Warning" hidden> You already have credit for COEN 10.</span>
                         </div>
                     </div>
             
@@ -360,7 +367,6 @@
     <script src="js/bootstrap-switch.js"></script>
     <script src="js/tests.js"></script>
     <script src="js/courses.js"></script>
-    <script src="js/equivalent-credit.js"></script>
     <script src="js/schedule-suggester.js"></script>
   </body>
 </html>

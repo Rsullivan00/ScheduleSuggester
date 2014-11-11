@@ -20,8 +20,6 @@ var updateCheckbox = function(courseNames, credit) {
         if (checked && !disabled && !credit)
             return;
 
-        credits[course] = credit;
-
         $(selector).prop('checked', credit);
         $(selector).prop('disabled', credit);
     });
@@ -39,16 +37,36 @@ var updateRadio = function(courseNames, credit) {
     var course = courses[0];
     var selector = '#' + course.toUpperCase();
     var radioSelector = 'input.credit:radio[name="' + course.substring(0, 4) + '"]';
+    var val = $(selector).val();
     if (credit) {
+        if (val < $(radioSelector + ":checked").val())
+            return;
         /* Adding credit. */
         $(selector).prop('checked', true);
         /* Iterate through previous values and disable them. */
+        $(radioSelector).each(function(index, element) {
+            if (element.value < $(selector).val()) {
+                element.checked = false;
+                element.disabled = true;
+            }
+        });
     } else {
+        if (val > $(radioSelector + ":checked").val())
+            return;
         /* Removing credit. */
-        val = $(selector).val() - 1;
-        if (val >= 0) {
-            $(radioSelector).val(val);
+        val = val - 1;
+        $(radioSelector).each(function(index, element) {
+            if (element.value >= val) {
+                element.disabled = false;
+                element.checked = false;
+            }
+        });
+
+        if (val <= -1) {
+            $(radioSelector).prop('disabled', true);
+            $(radioSelector).prop('checked', false);
         }
+        $(radioSelector).val([val]);
     }
 };
 
@@ -57,44 +75,40 @@ var TESTS = {
         if (score > THRESHOLDS.calcAB) {
             updateRadio('math11', true);
         } else {
-            if ($('#calcBC').val() < THRESHOLDS.calcAB)
+            if ($('#calcBC').val() < THRESHOLDS.calcBC[0])
                 updateRadio('math11', false);
         }
     },
     calcBC: function(score) { 
-        var mathCredit = $('input[name="math"]:checked').val();
         if (score >= THRESHOLDS.calcBC[0] && score < THRESHOLDS.calcBC[1]) {
             updateRadio('math11', true);
-            if (mathCredit < 2)
-                updateRadio('math12', false);
+            updateRadio('math12', false);
         } else if (score >= THRESHOLDS.calcBC[1]) {
             updateRadio('math11 math12', true);
         } else {
-            if ($('#calcAB').val() < THRESHOLDS.calcAB && mathCredit < 1)
-                updateRadio('math11', false);
-            else if (mathCredit < 2)
+            if ($('#calcAB').val() >= THRESHOLDS.calcAB)
                 updateRadio('math12', false);
+            else 
+                updateRadio('math11 math12', false);
         }
     },
     csci:   function(score) { 
-        var coen = $('input.credit:radio[name="coen"]:checked').val();
         var experience = $('#progExperience').prop('checked');
         if (score >= THRESHOLDS.csci[0] && score < THRESHOLDS.csci[1]) {
             updateRadio('coen10', true);
-            if (coen < 2)
-                updateRadio('coen11', false);
+            updateRadio('coen11', false);
         } else if (score >= THRESHOLDS.csci[1]) {
             updateRadio('coen10 coen11', true);
         } else {
-            if (coen < 1 && !$('#progExperience').prop('checked'))
+            updateRadio('coen11', false);
+            if (!experience)
                 updateRadio('coen10', false);
-            if (coen < 2) /* COEN == 2 corresponds to credit for COEN11 */
-                updateRadio('coen11', false);
         } 
     },
     chem:   function(score) { 
         if (score >= THRESHOLDS.chem[0] && score < THRESHOLDS.chem[1]) {
             updateCheckbox('chem11', true);
+            updateCheckbox('chem12', false);
         } else if (score >= THRESHOLDS.chem[1]) {
             updateCheckbox('chem11 chem12', true);
         } else {

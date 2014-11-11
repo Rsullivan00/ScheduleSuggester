@@ -1,7 +1,6 @@
 var COEN = "COEN";
 var WEB_DESIGN = "Web Design and Engineering";
 var major = COEN;
-var credits;
 
 /* Global flag to track which quarter to put ENGR 1. */
 var isEngr1Fall = true;
@@ -111,25 +110,8 @@ var switchEngr1 = function() {
 
 /* Resets all credits and UI components to initial states. */
 var reset = function() {
-    credits = {
-        math9: true,
-        math11: false,
-        math12: false,
-        math13: false,
-        math14: false,
-
-        coen10: false,
-        coen11: false,
-        coen12: false,
-
-        phys31: false,
-        phys32: false,
-
-        envs21: false,
-
-        chem11: false,
-        chem12: false
-    };
+    /* Enable all inputs */
+    $("input").prop('disabled', false);
 
     /* Uncheck all checkboxes */
     $("input:checkbox").prop('checked', false);
@@ -162,29 +144,35 @@ $(document).ready(function() {
 
     bindSelects();
 
-    bindEquivalentCredit();
+    /* Bind equivalent credit checkboxes and radio buttons */
+    $('input.credit').on('change', function(e) {
+        drawSchedule();
+    });
 
     /* Skip COEN 10 if user has programming experience. */
     $('#progExperience').on('change', function(e) {
-        var coen = $('input.credit:radio[name="coen"]:checked').val();
-        if ($('#csci').val() < THRESHOLDS.csci && !coen)
-            credits.coen10 = e.target.checked;
+        if ($('#csci').val() < THRESHOLDS.csci)
+            updateRadio('coen10', e.target.checked);
 
         drawSchedule(); 
     });
 
+    /* Show user that they can't choose to skip COEN 10 if they already have credit for it. */
+    $('#collapseFour').on('show.bs.collapse', function() {
+        var hasCredit = $('input.credit:radio[name="coen"]:checked').val() > 0;
+        $('#progExperience').prop('disabled', hasCredit);
+        $('#coen10Warning').prop('hidden', !hasCredit);
+    });
+
     /* Calculus readiness exam */
-    $('#calcReadiness').on('change', function() {
-        if (!credits.math11) {
-            credits.math9 = !credits.math9;
-            drawSchedule();
+    $('#calcReadiness').on('change', function(e) {
+        if (e.target.checked) {
+            updateRadio('math9', false);
         } else {
-            $('#readinessWarning').fadeIn();
-            setTimeout(function() {
-                $('#readinessWarning').fadeOut();
-            }, 10000);
-            $('#calcReadiness').prop('checked', false);
+            updateRadio('math11', false);
         }
+        $('#calcReadinessWarning').prop('hidden', !e.target.checked);
+        drawSchedule();
     });
 
     reset();
