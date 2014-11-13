@@ -33,7 +33,7 @@ var getSchedule = function() {
                 filteredCourses.push(course);
         }
 
-        filteredCourses.push([COURSES.core, COURSES.core, COURSES.core]);
+        filteredCourses.push(COURSES.core, COURSES.core, COURSES.core);
 
         return filteredCourses[num];
     }
