@@ -48,6 +48,8 @@ var updateRadio = function(courseNames, credit) {
             if (element.value < $(selector).val()) {
                 element.checked = false;
                 element.disabled = true;
+            } else {
+                element.disabled = false;
             }
         });
     } else {
@@ -59,6 +61,8 @@ var updateRadio = function(courseNames, credit) {
             if (element.value >= val) {
                 element.disabled = false;
                 element.checked = false;
+            } else {
+                element.disabled = true;
             }
         });
 

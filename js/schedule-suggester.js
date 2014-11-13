@@ -169,7 +169,9 @@ $(document).ready(function() {
         if (e.target.checked) {
             updateRadio('math9', false);
         } else {
-            updateRadio('math11', false);
+            /* Check the select values to reset schedule. */
+            $('#calcAB').change();
+            $('#calcBC').change();
         }
         $('#calcReadinessWarning').prop('hidden', !e.target.checked);
         drawSchedule();
