@@ -209,5 +209,21 @@ $(document).ready(function() {
         drawSchedule();
     });
 
+    $('#ENVS21').on('change', function(e) {
+        if (e.target.checked) {
+            var chem11 = $('#CHEM11').prop('checked');
+            if (chem11)
+                updateCheckbox('chem12', true);
+            else
+                updateCheckbox('chem11', true);
+        } else {
+            var chem12 = $('#CHEM12').prop('checked');
+            if (chem12)
+                updateCheckbox('chem12', false);
+            else
+                updateCheckbox('chem11', false);
+        }
+    });
+
     reset();
 });
