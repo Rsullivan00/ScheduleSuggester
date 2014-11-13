@@ -5,22 +5,43 @@ var major = COEN;
 /* Global flag to track which quarter to put ENGR 1. */
 var isEngr1Fall = true;
 
+var skipCourse = function(course) {
+    var id = course.id;
+    var skippedHTML = "<div id='" + id + "' class='skipped col-md-6'>" + course.title + "</div>";
+
+    /* Don't add duplicates. */
+    if ($('#' + id).length == 0)
+        $('#courses-skipped').append(skippedHTML);
+
+    return COURSES.core;
+}
+
 /* Uses the COURSES and credits objects to return a matrix of Course objects. */
 var getSchedule = function() { 
     /* Used to insert a core course if the user already has credit for the course given as a parameter. */
-    function getCourse(courseName) {
+    function getCourse(courseName, equivCourseList) {
         var selector = '#' + courseName.toUpperCase();
+        var course = COURSES[courseName];
         if ($(selector).prop('type') == 'checkbox') { 
-            if ($(selector).prop('checked')) 
-                return COURSES.core;
+            if ($(selector).prop('checked')) {
+                return skipCourse(course);
+            } else if (equivCourseList) {
+                /* Check equivalent checkboxes for replacement credit. */
+                var equivCourses = equivCourseList.split(' ');
+                for (var key in equivCourses) {
+                    var altSelector = '#' + equivCourses[key].toUpperCase();
+                     if ($(altSelector).prop('checked')) 
+                        return skipCourse(course);
+                }
+            }
         } else  {
             /* Else it's a radio button */
             var radioSelector = 'input.credit:radio[name="' + $(selector).prop('name') + '"]:checked';
             if ($(radioSelector).val() >= $(selector).val()) 
-                return COURSES.core;
+                return skipCourse(course);
         }
         
-        return COURSES[courseName];
+        return course;
     }
 
     function getMath(num) {
@@ -28,7 +49,10 @@ var getSchedule = function() {
         var filteredCourses = [];
         for (var key in courses) {
             var course = courses[key];
-            course = getCourse(course);
+            var equiv = "";
+            if (course == "amth106")
+                equiv = "chem12";
+            course = getCourse(course, equiv);
             if (course != COURSES.core)
                 filteredCourses.push(course);
         }
@@ -38,10 +62,13 @@ var getSchedule = function() {
         return filteredCourses[num];
     }
     
+    /* Reset skipped courses. */
+    $('#courses-skipped').html('');
+
     var schedule = [
         [COURSES.ctw[0], 
             getMath(0), 
-            getCourse('chem11'), 
+            getCourse('chem11', 'chem12 envs21'), 
             getCourse('coen10')
         ],
         [COURSES.ctw[1], 
@@ -168,8 +195,13 @@ $(document).ready(function() {
     $('#calcReadiness').on('change', function(e) {
         if (e.target.checked) {
             updateRadio('math9', false);
+            $('#calcAB').prop('disabled', true);
+            $('#calcBC').prop('disabled', true);
         } else {
             /* Check the select values to reset schedule. */
+            $('#calcAB').prop('disabled', false);
+            $('#calcBC').prop('disabled', false);
+
             $('#calcAB').change();
             $('#calcBC').change();
         }

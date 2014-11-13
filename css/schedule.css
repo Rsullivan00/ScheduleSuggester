@@ -6,6 +6,10 @@
     border: none;
 }
 
+#courses-skipped-section {
+    display: none;
+}
+
 #schedule-table > tbody > tr > td {
     width: 33.33%;
 }
@@ -30,5 +34,9 @@
     }
     #color-key {
         display: none;
+    }
+
+    #courses-skipped-section {
+        display: block;
     }
 }
