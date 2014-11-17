@@ -1,5 +1,5 @@
 var COEN = "COEN";
-var WEB_DESIGN = "Web Design and Engineering";
+var WEB_DESIGN = "Web Design";
 var major = COEN;
 
 /* Global flag to track which quarter to put ENGR 1. */
@@ -178,6 +178,8 @@ var reset = function() {
     /* Hide calc readiness warning. */
     $('#calcReadinessWarning').prop('hidden', true);
 
+    isEngr1Fall = true;
+
     drawSchedule();
 };
 
@@ -193,9 +195,14 @@ $(document).ready(function() {
         } else {
             major = COEN;
         }
+        $('#major-title').html(major);
 
-        drawSchedule();
+        reset();
     });
+
+    /* Reset major. */
+    $('input[name="major-switch"]').bootstrapSwitch('state', false, false);
+    major = COEN;
 
     /* Bind print button to window.print() */
     $("#print-btn").click(function() {
