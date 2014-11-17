@@ -53,6 +53,8 @@ var COURSES = {
 
     core: new Course("University Core", TYPES.core),
 
+    natsci: new Course("Natural Science", TYPES.mathScience),
+
     engrButton: new Course(ENGR_BUTTON_TEXT, "") 
 };
 

@@ -46,12 +46,16 @@ var getSchedule = function() {
 
     function getMath(num) {
         var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
+        if (major == WEB_DESIGN) {
+            courses.splice(courses.indexOf("amth106"), 1);
+            courses.splice(courses.indexOf("math53"), 1);
+        }
         var filteredCourses = [];
         for (var key in courses) {
             var course = courses[key];
             var equiv = "";
             if (course == "amth106")
-                equiv = "chem12";
+                equiv = "chem12 envs21";
             course = getCourse(course, equiv);
             if (course != COURSES.core)
                 filteredCourses.push(course);
@@ -65,22 +69,43 @@ var getSchedule = function() {
     /* Reset skipped courses. */
     $('#courses-skipped').html('');
 
-    var schedule = [
-        [COURSES.ctw[0], 
-            getMath(0), 
-            getCourse('chem11', 'chem12 envs21'), 
-            getCourse('coen10')
-        ],
-        [COURSES.ctw[1], 
-            getMath(1), 
-            getCourse('phys31'),
-            getCourse('coen11')
-        ],
-        [getCourse('coen19'), 
-            getMath(2), 
-            getCourse('phys32'),
-            getCourse('coen12')]
-    ];
+    var schedule;
+    if (major == WEB_DESIGN) {
+        schedule = [
+            [COURSES.ctw[0], 
+                getMath(0), 
+                getCourse('natsci', 'chem11 envs21'), 
+                getCourse('coen10')
+            ],
+            [COURSES.ctw[1], 
+                getMath(1), 
+                COURSES.core,
+                getCourse('coen11')
+            ],
+            [getCourse('coen19'), 
+                getMath(2), 
+                COURSES.core,
+                getCourse('coen12')]
+        ];
+    } else {
+        /* COEN major */
+        schedule = [
+            [COURSES.ctw[0], 
+                getMath(0), 
+                getCourse('chem11', 'chem12 envs21'), 
+                getCourse('coen10')
+            ],
+            [COURSES.ctw[1], 
+                getMath(1), 
+                getCourse('phys31'),
+                getCourse('coen11')
+            ],
+            [getCourse('coen19'), 
+                getMath(2), 
+                getCourse('phys32'),
+                getCourse('coen12')]
+        ];
+    }
 
     /* If we have two adjacent core slots, replace with C&I */
     if ($.inArray(COURSES.core, schedule[0]) != -1 && $.inArray(COURSES.core, schedule[1]) != -1) {
@@ -139,6 +164,7 @@ var switchEngr1 = function() {
 var reset = function() {
     /* Enable all inputs */
     $("input").prop('disabled', false);
+    $("select").prop('disabled', false);
 
     /* Uncheck all checkboxes */
     $("input:checkbox").prop('checked', false);
@@ -149,6 +175,9 @@ var reset = function() {
     /* Reset radio buttons */
     $("input:radio[value='0']").prop('checked', true);
 
+    /* Hide calc readiness warning. */
+    $('#calcReadinessWarning').prop('hidden', true);
+
     drawSchedule();
 };
 
@@ -158,6 +187,15 @@ var reset = function() {
 $(document).ready(function() {
     /* Enable custom switch */
     $("[name='major-switch']").bootstrapSwitch();
+    $("[name='major-switch']").on('switchChange.bootstrapSwitch', function(e) {
+        if (major == COEN) {
+            major = WEB_DESIGN;
+        } else {
+            major = COEN;
+        }
+
+        drawSchedule();
+    });
 
     /* Bind print button to window.print() */
     $("#print-btn").click(function() {
@@ -207,22 +245,6 @@ $(document).ready(function() {
         }
         $('#calcReadinessWarning').prop('hidden', !e.target.checked);
         drawSchedule();
-    });
-
-    $('#ENVS21').on('change', function(e) {
-        if (e.target.checked) {
-            var chem11 = $('#CHEM11').prop('checked');
-            if (chem11)
-                updateCheckbox('chem12', true);
-            else
-                updateCheckbox('chem11', true);
-        } else {
-            var chem12 = $('#CHEM12').prop('checked');
-            if (chem12)
-                updateCheckbox('chem12', false);
-            else
-                updateCheckbox('chem11', false);
-        }
     });
 
     reset();
