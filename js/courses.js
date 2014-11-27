@@ -36,7 +36,8 @@ var COURSES = {
     coen11: new Course("COEN 11 - Advanced Programming", TYPES.major),
     coen12: new Course("COEN 12 - Data Structures", TYPES.major),
     coen19: new Course("COEN 19 - Discrete Math", TYPES.major),
-    coen21: new Course("COEN 21 - Logic Design", TYPES.major),
+    coen20: new Course("COEN 20 - Intro. to Embedded Systems", TYPES.major),
+    coen21: new Course("COEN 21 - Intro. to Logic Design", TYPES.major),
     coen60: new Course("COEN 60 - Intro. to Web Technologies", TYPES.major),
 
     chem11: new Course("CHEM 11 - Chemistry I", TYPES.mathScience),

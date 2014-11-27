@@ -42,23 +42,27 @@ function skipCourse(course) {
 function getCourse(courseName, equivCourseList) {
     var selector = '#' + courseName.toUpperCase();
     var course = COURSES[courseName];
-    if ($(selector).prop('type') == 'checkbox') { 
-        if ($(selector).prop('checked')) {
-            return skipCourse(course);
-        } else if (equivCourseList) {
-            /* Check equivalent checkboxes for replacement credit. */
-            var equivCourses = equivCourseList.split(' ');
-            for (var key in equivCourses) {
-                var altSelector = '#' + equivCourses[key].toUpperCase();
-                 if ($(altSelector).prop('checked')) 
-                    return skipCourse(course);
-            }
+    if ($(selector).length) {
+        if ($(selector).prop('type') == 'checkbox') { 
+            if ($(selector).prop('checked')) {
+                return skipCourse(course);
+            } 
+        } else  {
+            /* Else it's a radio button */
+            var radioSelector = 'input.credit:radio[name="' + $(selector).prop('name') + '"]:checked';
+            if ($(radioSelector).val() >= $(selector).val()) 
+                return skipCourse(course);
         }
-    } else  {
-        /* Else it's a radio button */
-        var radioSelector = 'input.credit:radio[name="' + $(selector).prop('name') + '"]:checked';
-        if ($(radioSelector).val() >= $(selector).val()) 
-            return skipCourse(course);
+    }
+
+    if (equivCourseList) {
+        /* Check equivalent checkboxes for replacement credit. */
+        var equivCourses = equivCourseList.split(' ');
+        for (var key in equivCourses) {
+            var altSelector = '#' + equivCourses[key].toUpperCase();
+             if ($(altSelector).prop('checked')) 
+                return skipCourse(course);
+        }
     }
     
     return course;
@@ -102,8 +106,21 @@ function coreLocation(schedule, quarter) {
     return $.inArray(COURSES.core, schedule[quarter]);
 }
 
-function insertCourse(schedule, course, quarters) {
-    for (var quarter in quarters) {
+function insertCourse(schedule, course, quarters, prereq) {
+    var prereqQuarter = -1;
+    if (prereq) {
+        for (var i = 0; i < 3; i++) {
+            if ($.inArray(prereq, schedule[i]) != -1) {
+                prereqQuarter = i;
+                break;
+            }
+        }
+    }
+                
+    for (var i = 0; i < quarters.length; i++) {
+        var quarter = quarters[i];
+        if (quarter <= prereqQuarter)
+            continue;
         var core = coreLocation(schedule, quarter);
         if (core != -1) {
             schedule[quarter][core] = course;
@@ -120,7 +137,7 @@ SCHEDULES[MAJORS.WEB_DESIGN] = function() {
     var schedule = [
         [COURSES.ctw[0], 
             getMath(0), 
-            getCourse('natsci', 'chem11 envs21'), 
+            getCourse('natsci', 'chem11 envs21 chem12'), 
             getCourse('coen10')
         ],
         [COURSES.ctw[1], 
@@ -140,7 +157,6 @@ SCHEDULES[MAJORS.WEB_DESIGN] = function() {
     insertCourse(schedule, COURSES.comm2, QUARTERS.all);
     insertCourse(schedule, COURSES.comm12, QUARTERS.all);
     insertCourse(schedule, COURSES.comm30, QUARTERS.all);
-    insertCourse(schedule, COURSES.coen60, QUARTERS.fall);
     insertCourse(schedule, COURSES.soci49, QUARTERS.all);
 
     return schedule;
@@ -166,6 +182,8 @@ SCHEDULES[MAJORS.COEN] = function() {
 
     insertCandI(schedule);
     insertENGR1(schedule);
+
+    insertCourse(schedule, COURSES.coen20, [QUARTERS.spring], COURSES.coen12);
 
     return schedule;
 };
