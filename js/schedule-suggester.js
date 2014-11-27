@@ -1,19 +1,6 @@
 /* Global flag to track which quarter to put ENGR 1. */
 var isEngr1Fall = true;
 
-/* Uses the COURSES and credits objects to return a matrix of Course objects. */
-var getSchedule = function() { 
-    /* Reset skipped courses. */
-    $('#courses-skipped').html('');
-
-    var schedule = SCHEDULES[major]();
-
-    insertCandI(schedule);
-    insertENGR1(schedule);
-
-    return schedule;
-};
-
 /* Gets the up-to-date schedule and draws it to the screen. */
 var drawSchedule = function() {
     var schedule = getSchedule();
@@ -54,6 +41,9 @@ var reset = function() {
     /* Hide calc readiness warning. */
     $('#calcReadinessWarning').prop('hidden', true);
 
+    /* Hide programming experience warning. */
+    $('#coen10Warning').prop('hidden', true);
+
     isEngr1Fall = true;
 
     drawSchedule();
@@ -72,6 +62,13 @@ $(document).ready(function() {
             major = MAJORS.COEN;
         }
         $('#major-title').html(major);
+        var selector = major.toLowerCase().replace(' ', '-');
+
+        $('.ap-test').parent().parent().prop('hidden', true);
+        $('.ap-test.' + selector).parent().parent().prop('hidden', false);
+
+        $('.credit').parent().prop('hidden', true);
+        $('.credit.' + selector).parent().prop('hidden', false);
 
         reset();
     });

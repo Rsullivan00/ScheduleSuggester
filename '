@@ -1,5 +1,5 @@
 var CORE = "University Core";
-var ENGR_BUTTON_TEXT = "<button id='engr1-btn' class='btn btn-block btn-info'>ENGR 1 here</button>";
+var ENGR_BUTTON_TEXT = "<button id='major1-btn' class='btn btn-block btn-info'>ENGR 1 here</button>";
 
 var __next_objid=1;
 function objectId(obj) {
@@ -56,12 +56,12 @@ var COURSES = {
 
     natsci: new Course("Natural Science", TYPES.mathScience),
 
-    comm2: new Course("COMM 2 - Intro. to Media Studies", TYPES.major),
-    comm12: new Course("COMM 12 - Technology and Communication", TYPES.major),
-    comm30: new Course("COMM 30 - Intro. to Digital Filmmaking", TYPES.major),
+    comm2: new Course("COMM 2 - Intro. to Media Studies", TYPES.core),
+    comm12: new Course("COMM 12 - Technology and Communication", TYPES.core),
+    comm30: new Course("COMM 30 - Intro. to Digital Filmmaking", TYPES.core),
 
-    soci49: new Course("SOCI 49 - Computers, the Internet, and Society", TYPES.major),
-    soci149: new Course("SOCI 149 - Business, Technology, and Society", TYPES.major),
+    soci49: new Course("SOCI 49 - Computers, the Internet, and Society", TYPES.core),
+    soci149: new Course("SOCI 149 - Business, Technology, and Society", TYPES.core),
 
 
     engrButton: new Course(ENGR_BUTTON_TEXT, "") 

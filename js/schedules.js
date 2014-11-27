@@ -1,3 +1,10 @@
+var QUARTERS = {
+    fall: 0,
+    winter: 1,
+    spring: 2,
+    all: [this.fall, this.winter, this.spring]
+};
+
 function getMath(num) {
     var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
     if (major == MAJORS.WEB_DESIGN) {
@@ -127,6 +134,15 @@ SCHEDULES[MAJORS.WEB_DESIGN] = function() {
             getCourse('coen12')]
     ];
 
+    insertENGR1(schedule);
+    insertCourse(schedule, COURSES.coen60, [QUARTERS.fall]);
+
+    insertCourse(schedule, COURSES.comm2, QUARTERS.all);
+    insertCourse(schedule, COURSES.comm12, QUARTERS.all);
+    insertCourse(schedule, COURSES.comm30, QUARTERS.all);
+    insertCourse(schedule, COURSES.coen60, QUARTERS.fall);
+    insertCourse(schedule, COURSES.soci49, QUARTERS.all);
+
     return schedule;
 };
 
@@ -148,5 +164,20 @@ SCHEDULES[MAJORS.COEN] = function() {
             getCourse('coen12')]
     ];
 
+    insertCandI(schedule);
+    insertENGR1(schedule);
+
     return schedule;
 };
+
+/* Uses the COURSES and credits objects to return a matrix of Course objects. */
+var getSchedule = function() { 
+    /* Reset skipped courses. */
+    $('#courses-skipped').html('');
+
+    var schedule = SCHEDULES[major]();
+
+    return schedule;
+};
+
+
