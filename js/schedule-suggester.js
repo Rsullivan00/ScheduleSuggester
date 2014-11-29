@@ -128,5 +128,13 @@ $(document).ready(function() {
         drawSchedule();
     });
 
+    /* Focus accordion element when it is expanded. Useful for smaller devices. */
+    $('#accordion').on('shown.bs.collapse', function (e) {
+        $('html, body').animate({
+            scrollTop: $(e.target.parentElement).offset().top
+        }, 1000);
+    })
+
+
     reset();
 });
