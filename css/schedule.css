@@ -14,6 +14,11 @@
     width: 33.33%;
 }
 
+#schedule-table > tbody > tr {
+    height: 57px;
+}
+
+
 /* 
  * Mobile or small-screen styles
  */
