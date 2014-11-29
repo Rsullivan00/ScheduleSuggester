@@ -24,6 +24,14 @@
  * Styles for printing
  */
 @media print {
+    #header {
+        display: none;
+    }
+
+    #input-column {
+        display: none;
+    }
+    /*
     body > div > div.row-fluid > div:nth-child(1) {
         display: none;
     }
@@ -31,6 +39,7 @@
     body > div > div > div:nth-child(2) > div.page-header.text-right {
         display: none;
     }
+    */
 
     button.btn {
         display: none;

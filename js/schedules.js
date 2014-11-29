@@ -2,7 +2,7 @@ var QUARTERS = {
     fall: 0,
     winter: 1,
     spring: 2,
-    all: [this.fall, this.winter, this.spring]
+    all: [0, 1, 2]
 };
 
 function getMath(num) {
@@ -107,6 +107,10 @@ function coreLocation(schedule, quarter) {
 }
 
 function insertCourse(schedule, course, quarters, prereq) {
+    /* Check for equivalent credit with getCourse function. If there is credit, skip this course. */
+    if (getCourse(course.id) == COURSES.core)
+        return false;
+
     var prereqQuarter = -1;
     if (prereq) {
         for (var i = 0; i < 3; i++) {
@@ -142,12 +146,12 @@ SCHEDULES[MAJORS.WEB_DESIGN] = function() {
         ],
         [COURSES.ctw[1], 
             getMath(1), 
-            COURSES.core,
+            COURSES.ci[0],
             getCourse('coen11')
         ],
-        [getCourse('coen19'), 
+        [COURSES.core, 
             getMath(2), 
-            COURSES.core,
+            COURSES.ci[1],
             getCourse('coen12')]
     ];
 

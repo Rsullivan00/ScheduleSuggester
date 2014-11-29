@@ -13,7 +13,8 @@ function objectId(obj) {
 function Course(title, type) {
     this.title = title;
     this.type = type;
-    this.id = objectId(this);
+    var titleWords = title.split(' ');
+    this.id = titleWords[0].toLowerCase() + titleWords[1];
 }
 
 var TYPES = {
