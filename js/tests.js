@@ -1,3 +1,11 @@
+/*
+ * File: tests.js
+ * Author: Rick Sullivan
+ * Date: 30 November 2014
+ *
+ * This file contains configuration for AP test scores.
+ */
+
 /* Contains the constant score thresholds for AP credit. */
 var THRESHOLDS = {
     calcAB: 3,
@@ -8,6 +16,7 @@ var THRESHOLDS = {
     physM: [3, 4]
 };
 
+/* TESTS object maps each test name to a function that handles the test logic. */
 var TESTS = {
     calcAB: function(score) { 
         if (score > THRESHOLDS.calcAB) {
@@ -69,6 +78,7 @@ var TESTS = {
     }
 };
 
+/* Called when an AP test's score has been changed. */
 var selectChange = function(select) {
    var val = $(select).val();
     /* N/A selected corresponds to a score of 0 */
@@ -84,5 +94,3 @@ var bindSelects = function() {
         $('#' + k).on('change', function () {selectChange($(this));});    
     });
 };
-
-

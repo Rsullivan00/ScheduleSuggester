@@ -1,3 +1,16 @@
+/*
+ * File: update-ui.js
+ * Author: Rick Sullivan
+ * Date: 30 November 2014
+ *
+ * Handles updating of input elements, namely checkboxes and radio buttons.
+ *
+ * Inputs work on a hierarchy; certain inputs will override other inputs.
+ *
+ * From highest control to lowest:
+ * Calculus readiness -> AP Tests -> Equivalent Credit -> Programming Experience
+ */
+
 /* Takes a space-delimited list of courses to assign credit to. */
 var updateCheckbox = function(courseNames, credit) {
     var courses = courseNames.split(' ');

@@ -1,3 +1,11 @@
+/*
+ * File: schedule-suggester.js
+ * Author: Rick Sullivan
+ * Date: 30 November 2014
+ *
+ * This file handles all content initialization and drawing to the UI. 
+ */
+
 /* Global flag to track which quarter to put ENGR 1. */
 var isEngr1Fall = true;
 

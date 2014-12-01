@@ -1,19 +1,20 @@
+/*
+ * File: courses.js
+ * Author: Rick Sullivan
+ * Date: 30 November 2014
+ *
+ * This file contains configuration for Course objects. Courses are used
+ * to populate the suggested schedule and color-coordinate it.
+ */
+
 var CORE = "University Core";
 var ENGR_BUTTON_TEXT = "<button id='engr1-btn' class='btn btn-block btn-info'>ENGR 1 here</button>";
-
-var __next_objid=1;
-function objectId(obj) {
-    if (obj==null) 
-        return null;
-    if (obj.__obj_id==null) 
-        obj.__obj_id=__next_objid++;
-    return obj.__obj_id;
-}
 
 function Course(title, type) {
     this.title = title;
     this.type = type;
     var titleWords = title.split(' ');
+    /* Id is the course department followed by the course number. E.g. 'math11'*/
     this.id = titleWords[0].toLowerCase() + titleWords[1];
 }
 

@@ -1,3 +1,12 @@
+/*
+ * File: schedules.js
+ * Author: Rick Sullivan
+ * Date: 30 November 2014
+ *
+ * This file handles schedule configuration for each major.
+ * It constructs an appropriate schedule based on the user's input choices.
+ */
+
 var QUARTERS = {
     fall: 0,
     winter: 1,
@@ -5,8 +14,11 @@ var QUARTERS = {
     all: [0, 1, 2]
 };
 
+/* Return the appropriate math sequence course. */
 function getMath(num) {
+    /* Math sequence, in order. */
     var courses = ["math9", "math11", "math12", "math13", "math14", "amth106", "amth108", "math53"];
+    /* Hack to remove amth106 and math53 for Web Design majors. */
     if (major == MAJORS.WEB_DESIGN) {
         courses.splice(courses.indexOf("amth106"), 1);
         courses.splice(courses.indexOf("math53"), 1);
@@ -17,6 +29,7 @@ function getMath(num) {
         var equiv = "";
         if (course == "amth106")
             equiv = "chem12 envs21";
+        /* Check if the user has credit for this course. */
         course = getCourse(course, equiv);
         if (course != COURSES.core)
             filteredCourses.push(course);
@@ -27,6 +40,9 @@ function getMath(num) {
     return filteredCourses[num];
 }
 
+/* Called when the user has credit for a given course.
+ * Updates the skipped courses div to be displayed when printing.
+ */
 function skipCourse(course) {
     var id = course.id;
     var skippedHTML = "<div id='" + id + "' class='skipped col-md-6'>" + course.title + "</div>";
@@ -38,7 +54,10 @@ function skipCourse(course) {
     return COURSES.core;
 }
 
-/* Used to insert a core course if the user already has credit for the course given as a parameter. */
+/* Used to insert a core course if the user already has credit for 
+ * the course given as a parameter. 
+ * Checks for credit for any equivalent courses as well.
+ */
 function getCourse(courseName, equivCourseList) {
     var selector = '#' + courseName.toUpperCase();
     var course = COURSES[courseName];
@@ -68,6 +87,7 @@ function getCourse(courseName, equivCourseList) {
     return course;
 }
 
+/* Greedily inserts the c&i sequence into the schedule. */
 function insertCandI(schedule) {
     /* If we have two adjacent core slots, replace with C&I */
     if ($.inArray(COURSES.core, schedule[0]) != -1 && $.inArray(COURSES.core, schedule[1]) != -1) {
@@ -106,6 +126,10 @@ function coreLocation(schedule, quarter) {
     return $.inArray(COURSES.core, schedule[quarter]);
 }
 
+/* Greedily inserts a course into the first core section in the schedule.
+ * Takes into account the quarters a course is offered, as well as making
+ * sure that the course is not taken along or before any prerequisites.
+ */
 function insertCourse(schedule, course, quarters, prereq) {
     /* Check for equivalent credit with getCourse function. If there is credit, skip this course. */
     if (getCourse(course.id) == COURSES.core)
@@ -135,6 +159,7 @@ function insertCourse(schedule, course, quarters, prereq) {
     return false;
 }
 
+/* Schedules for each major are created through the following configuration functions. */
 var SCHEDULES = {};
 
 SCHEDULES[MAJORS.WEB_DESIGN] = function() {
@@ -192,7 +217,7 @@ SCHEDULES[MAJORS.COEN] = function() {
     return schedule;
 };
 
-/* Uses the COURSES and credits objects to return a matrix of Course objects. */
+/* Returns a matrix of Course objects depending on the user's selections. */
 var getSchedule = function() { 
     /* Reset skipped courses. */
     $('#courses-skipped').html('');
@@ -201,5 +226,3 @@ var getSchedule = function() {
 
     return schedule;
 };
-
-
