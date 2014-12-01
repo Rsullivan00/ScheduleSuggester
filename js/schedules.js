@@ -174,7 +174,7 @@ SCHEDULES[MAJORS.WEB_DESIGN] = function() {
             COURSES.ci[0],
             getCourse('coen11')
         ],
-        [COURSES.core, 
+        [COURSES.rtc1, 
             getMath(2), 
             COURSES.ci[1],
             getCourse('coen12')]

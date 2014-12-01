@@ -66,6 +66,7 @@ var COURSES = {
     soci49: new Course("SOCI 49 - Computers, the Internet, and Society", TYPES.major),
     soci149: new Course("SOCI 149 - Business, Technology, and Society", TYPES.major),
 
+    rtc1: new Course("RTC 1 - Religion, Theology & Culture I", TYPES.core),
 
     engrButton: new Course(ENGR_BUTTON_TEXT, "") 
 };
